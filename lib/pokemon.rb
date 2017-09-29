@@ -14,14 +14,8 @@ class Pokemon
   end
 
   def self.find(id_num, db)
-    sql = <<-SQL
-    SELECT *
-    FROM pokemon
-    WHERE id = ?
-    LIMIT 1
-    SQL
-    new_pokemon = db.execute(sql, id_num).flatten
-    self.new(id: new_pokemon[0], name: new_pokemon[1], type: new_pokemon[2], hp: new_pokemon[3], db: db)
+    pokemon_found = db.execute("SELECT * FROM pokemon WHERE id = ?", id).flatten
+    Pokemon.new(id: pokemon_found[0], name: pokemon_found[1], type: pokemon_found[2], hp: pokemon_found[3], db: db)
   end
 
   def alter_hp(new_hp, db)
