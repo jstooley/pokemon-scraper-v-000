@@ -8,4 +8,7 @@ class Pokemon
     @id = id
     @hp = hp
   end
+
+  def.self.save
+  end
 end
